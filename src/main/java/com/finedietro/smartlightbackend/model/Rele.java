@@ -5,23 +5,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Rele {
 
-    private String idBulb;
+    private String id;
     private String status;
     private String message;
+    private String action;
 
     public Rele(String idBulb) {
-        this.idBulb = idBulb;
+        this.id = idBulb;
     }
 
     public Rele() {
     }
 
-    public String getIdBulb() {
-        return idBulb;
+    public String getId() {
+        return id;
     }
 
-    public void setIdBulb(String idBulb) {
-        this.idBulb = idBulb;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getStatus() {
@@ -39,5 +40,15 @@ public class Rele {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+    
+    
 
 }

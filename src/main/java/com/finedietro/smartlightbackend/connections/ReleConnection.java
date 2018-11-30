@@ -23,9 +23,12 @@ public class ReleConnection {
         try {
             Client client = ClientBuilder.newClient();
             // In un oggetto WebTarget viene indicato il target della richiesta HTTP
-            WebTarget target = client.target("http://localhost:8080/testwebapp/webapi/rele/001/status");
+            WebTarget target = client.target("http://192.168.0.72:8084/webapi/GestioneLuce/");
+            //http://192.168.0.72:8084/webapi/GestioneLuce/
+            //http://localhost:8080/testwebapp/webapi/rele/001/status
             // Viene effettuata la richiesta la quale ritorna un JSON, successivamente viene convertito nella class Rele
             rele = target.request(MediaType.APPLICATION_JSON).get(Rele.class);
+            System.out.println("Rele tornato: " + rele.getMessage() +" "+ rele.getId());
             System.out.println("Sono alla fine del try()");
         } catch (Exception error) {
             rele.setMessage(error.getMessage());
