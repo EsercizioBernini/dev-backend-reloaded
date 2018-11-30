@@ -3,7 +3,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.finedietro</groupId>
+    <groupId>com.finedoetro</groupId>
     <artifactId>smartlightbackend</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>

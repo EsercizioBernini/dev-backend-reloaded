@@ -25,7 +25,6 @@ public class LightbulbService {
         this.lightbulb = new Lightbulb();
         this.ms = new MeterService();
     }
-    
 
     private String checkReleStatus(String id) {   // DA FARE !!!!!!!!!
         rs = new ReleService(id);
