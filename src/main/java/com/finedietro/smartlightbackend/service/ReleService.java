@@ -11,11 +11,9 @@ public class ReleService {
     private static String ACTION_ACCENDI = "ACCENDI";
     private static String ACTION_SPEGNI = "SPEGNI";
 
-    
-    
     public ReleService(String idBulbConnected) {
 
-       
+        rele = new Rele(idBulbConnected);
 
     }
 
@@ -24,8 +22,7 @@ public class ReleService {
         // viene chiamato il rele fisico facendo le relative chiamate http per ottenere lo stato dell'interruttore
         try {
             //CONNESSIONE
-            
-            rele.setStatus(STATUS_OFF);  // MOCK       
+            rele.setStatus(STATUS_OFF);
             
         } catch (Exception e) {
             rele.setStatus(STATUS_ERROR);
@@ -38,7 +35,7 @@ public class ReleService {
         } else if (rele.getStatus().equalsIgnoreCase(STATUS_ON)) {       // caso in cui rele rilevi contatto chiuso (passa corrente)
             rele.setStatus(STATUS_ON);
 
-        } else if (rele.getStatus().equalsIgnoreCase(STATUS_OFF)) {
+        } else if (rele.getStatus().equalsIgnoreCase(STATUS_ON)) {
             rele.setStatus(STATUS_OFF);
         }
         
