@@ -2,6 +2,7 @@ package com.finedietro.smartlightbackend.resurces;
 
 import com.finedietro.smartlightbackend.model.Action;
 import com.finedietro.smartlightbackend.model.Lightbulb;
+import com.finedietro.smartlightbackend.model.Rele;
 import com.finedietro.smartlightbackend.service.LightbulbService;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -30,6 +31,17 @@ public class LightbulbResurce {
     @Produces(MediaType.APPLICATION_JSON)
     public Lightbulb setLightbulbStatus(Action action) {
         return ls.manageAction(action);
+    }
+    
+    
+     @GET
+    @Path("/test")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Rele getTest(@PathParam("id") String id) {
+        Rele r = new Rele(id);
+        r.setStatus("YAAA");
+        r.setMessage("Messaggio");
+        return r;
     }
     
 }

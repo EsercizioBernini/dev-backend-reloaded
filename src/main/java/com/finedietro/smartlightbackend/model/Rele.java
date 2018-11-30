@@ -4,15 +4,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Rele {
+
     private String idBulb;
     private String status;
     private String message;
 
-    
-    
-    public Rele (String idBulb){
-        this.idBulb=idBulb;
+    public Rele(String idBulb) {
+        this.idBulb = idBulb;
     }
+
+    public Rele() {
+    }
+
     public String getIdBulb() {
         return idBulb;
     }
@@ -36,10 +39,5 @@ public class Rele {
     public void setMessage(String message) {
         this.message = message;
     }
-    
-    
-    
+
 }
-
-
-

@@ -28,10 +28,10 @@ public class LightbulbService {
 
     private String checkReleStatus(String id) {   // DA FARE !!!!!!!!!
         rs = new ReleService(id);
-        
+
         rele = rs.getReleStatus(id);
-        
-        if (rele.getStatus().equalsIgnoreCase(STATUS_ON)) {
+
+        /*if (rele.getStatus().equalsIgnoreCase(STATUS_ON)) {
             return STATUS_ON;
         } else if (rele.getStatus().equalsIgnoreCase(STATUS_OFF)) {
             return STATUS_OFF;
@@ -41,7 +41,8 @@ public class LightbulbService {
             }
             return STATUS_ERROR;
             
-        }
+        }*/
+        return rele.getStatus();
 
     }
 
@@ -61,7 +62,7 @@ public class LightbulbService {
     public Lightbulb getLightbulbStatus(String id) {
 
         lightbulb.setId(id);
-        
+
         lightbulb.setStatus(checkReleStatus(id));
 
         return lightbulb;
