@@ -27,7 +27,7 @@ public class LightbulbService {
     }
     
 
-    private String checkReleStatus(String id) {  
+    private String checkReleStatus(String id) {   // DA FARE !!!!!!!!!
         rs = new ReleService(id);
         
         rele = rs.getReleStatus(id);
@@ -63,7 +63,7 @@ public class LightbulbService {
 
         lightbulb.setId(id);
         
-        lightbulb.setStatus(checkReleStatus(id));  // setto lo stato della lampadina in base allo stato del relai
+        lightbulb.setStatus(checkReleStatus(id));
 
         return lightbulb;
     }
