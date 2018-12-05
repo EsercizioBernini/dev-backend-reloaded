@@ -15,10 +15,12 @@ public class ReleConnection {
     private URL url;
     private HttpURLConnection connection;
     private Rele rele= new Rele();
+    
+                                                                                
 
     public Rele getReleStatus() {
 
-        System.out.println("Sono in getReleStatus di ReleConnection");
+        System.out.println("Sono in getReleStatus di ReleConnection");          
 
         try {
             Client client = ClientBuilder.newClient();
