@@ -1,5 +1,6 @@
 package com.finedietro.smartlightbackend.connections;
 
+import com.finedietro.smartlightbackend.model.Action;
 import com.finedietro.smartlightbackend.model.Rele;
 
 import java.net.HttpURLConnection;
@@ -37,6 +38,11 @@ public class ReleConnection {
         
         return rele;
 
+    }
+    
+    public Rele setReleStatus(Action action) {
+        
+        return rele;
     }
 
 }
