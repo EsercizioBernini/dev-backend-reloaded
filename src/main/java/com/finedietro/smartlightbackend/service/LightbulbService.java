@@ -17,6 +17,8 @@ public class LightbulbService {
 
     private static String STATUS_ON = "ON";
     private static String STATUS_OFF = "OFF";
+    private static String STATUS_0 = "0";
+    private static String STATUS_1 = "1";
     private static String STATUS_ERROR = "ERROR";
     private static String ACTION_ACCENDI = "ACCENDI";
     private static String STATUS_SPEGNI = "SPEGNI";
@@ -31,18 +33,18 @@ public class LightbulbService {
 
         rele = rs.getReleStatus(id);
 
-        /*if (rele.getStatus().equalsIgnoreCase(STATUS_ON)) {
+        if (rele.getStatus().equalsIgnoreCase(STATUS_1)) {
             return STATUS_ON;
-        } else if (rele.getStatus().equalsIgnoreCase(STATUS_OFF)) {
+        } else if (rele.getStatus().equalsIgnoreCase(STATUS_0)) {
             return STATUS_OFF;
         } else {
-            if(rele.getMessage()!= null){
+            if(rele.getStatus().equalsIgnoreCase(STATUS_ERROR)){
                 lightbulb.setMessage(rele.getMessage());
             }
             return STATUS_ERROR;
             
-        }*/
-        return rele.getStatus();
+        }
+      
 
     }
 

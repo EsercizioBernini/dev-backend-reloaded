@@ -27,11 +27,11 @@ public class ReleService {
            rele=  rl.getReleStatus();
             
         } catch (Exception e) {
-             rele.setMessage(e.toString());
-        rele.setStatus(e.toString());
+            
+            rele.setMessage(e.getMessage());
            
         }
-/*
+
         if (rele.getStatus().equalsIgnoreCase(STATUS_ERROR)) { //ERRORE
             return rele;
 
@@ -41,9 +41,8 @@ public class ReleService {
         } else if (rele.getStatus().equalsIgnoreCase(STATUS_ON)) {
             rele.setStatus(STATUS_OFF);
         }
-        */
-
-         return rele;
+        return rele;
+        
     }
 
     public Rele setReleStatus(String idBulb, String action) {
