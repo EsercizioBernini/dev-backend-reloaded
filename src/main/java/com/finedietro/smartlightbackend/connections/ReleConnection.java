@@ -10,18 +10,17 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.client.Entity;
 
 public class ReleConnection {
 
     private URL url;
     private HttpURLConnection connection;
-    private Rele rele= new Rele();
-    
-                                                                                
+    private Rele rele = new Rele();
 
     public Rele getReleStatus() {
 
-        System.out.println("Sono in getReleStatus di ReleConnection");          
+        System.out.println("Sono in getReleStatus di ReleConnection");
 
         try {
             Client client = ClientBuilder.newClient();
@@ -31,19 +30,32 @@ public class ReleConnection {
             //http://localhost:8080/testwebapp/webapi/rele/001/status
             // Viene effettuata la richiesta la quale ritorna un JSON, successivamente viene convertito nella class Rele
             rele = target.request(MediaType.APPLICATION_JSON).get(Rele.class);
-            System.out.println("Rele tornato: " + rele.getMessage() +" "+ rele.getId());
+            System.out.println("Rele tornato: " + rele.getMessage() + " " + rele.getId());
             System.out.println("Sono alla fine del try()");
+        } catch (Exception error) {
+            rele.setMessage(error.getMessage());
+            rele.setStatus("ERROR");
+            System.out.println("Eccezione : " + error);
+        }
+
+        return rele;
+
+    }
+
+    public Rele setReleStatus(Action action) {
+
+        try {
+            Client client = ClientBuilder.newClient();
+            WebTarget target = client.target("http://192.168.0.72:8084/webapi/GestioneLuce/post");
+            rele = target.request(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .post(Entity.json(action), Rele.class);
+
         } catch (Exception error) {
             rele.setMessage(error.getMessage());
             System.out.println("Eccezione : " + error);
         }
-        
-        return rele;
 
-    }
-    
-    public Rele setReleStatus(Action action) {
-        
         return rele;
     }
 

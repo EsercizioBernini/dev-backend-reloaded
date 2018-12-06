@@ -1,5 +1,8 @@
 package com.finedietro.smartlightbackend.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Action {  // classe che mappa il json che viene mandato come body della chiamata POST fatta dal front End
 
     private String action;

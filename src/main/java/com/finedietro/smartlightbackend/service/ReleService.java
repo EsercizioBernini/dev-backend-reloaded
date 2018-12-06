@@ -1,6 +1,7 @@
 package com.finedietro.smartlightbackend.service;
 
 import com.finedietro.smartlightbackend.connections.ReleConnection;
+import com.finedietro.smartlightbackend.model.Action;
 import com.finedietro.smartlightbackend.model.Rele;
 
 public class ReleService {
@@ -8,9 +9,10 @@ public class ReleService {
     private Rele rele;
     private static String STATUS_ON = "ON";
     private static String STATUS_OFF = "OFF";
+    
     private static String STATUS_ERROR = "ERROR";
-    private static String ACTION_ACCENDI = "ACCENDI";
-    private static String ACTION_SPEGNI = "SPEGNI";
+    private static String ACTION_ACCENDI = "ACCESO";
+    private static String ACTION_SPEGNI = "SPENTO";
 
     ReleConnection rl = new ReleConnection();
     
@@ -20,48 +22,33 @@ public class ReleService {
 
     }
 
-    public Rele getReleStatus(String idBulb) {
+    public Rele getReleStatus(String id) {
 
         // viene chiamato il rele fisico facendo le relative chiamate http per ottenere lo stato dell'interruttore
         try {
            rele=  rl.getReleStatus();
             
         } catch (Exception e) {
-            
+            rele.setStatus(STATUS_ERROR);
             rele.setMessage(e.getMessage());
            
-        }
-
-        if (rele.getStatus().equalsIgnoreCase(STATUS_ERROR)) { //ERRORE
-            return rele;
-
-        } else if (rele.getStatus().equalsIgnoreCase(STATUS_ON)) {       // caso in cui rele rilevi contatto chiuso (passa corrente)
-            rele.setStatus(STATUS_ON);
-
-        } else if (rele.getStatus().equalsIgnoreCase(STATUS_ON)) {
-            rele.setStatus(STATUS_OFF);
         }
         return rele;
         
     }
 
-    public Rele setReleStatus(String idBulb, String action) {
-
+    public Rele setReleStatus(Action action) {      
         
-        
-        if (action.equalsIgnoreCase(ACTION_ACCENDI)) {
-            
-        } else if (action.equalsIgnoreCase(ACTION_SPEGNI)) {
-
-        }
-        
-          try {
-                // chiamo il rele e con richiesta http chiedo di accendere o spegnere
+         try {
+               System.out.println("setReleStatus 1"+rl);
+               rele=  rl.setReleStatus(action);
+               System.out.println("manage action2");
             } catch (Exception e) {
-                rele.setStatus(e.getMessage());
+                System.out.println("manage action2 da eccezione");
+                rele.setMessage(e.getMessage());
+                rele.setStatus(STATUS_ERROR);
             }
  
-        
         return rele;
 
     }

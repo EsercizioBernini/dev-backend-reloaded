@@ -33,15 +33,4 @@ public class LightbulbResurce {
         return ls.manageAction(action);
     }
     
-    
-     @GET
-    @Path("/test")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Rele getTest(@PathParam("id") String id) {
-        Rele r = new Rele(id);
-        r.setStatus("YAAA");
-        r.setMessage("Messaggio");
-        return r;
-    }
-    
 }
