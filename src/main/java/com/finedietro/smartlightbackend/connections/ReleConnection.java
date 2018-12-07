@@ -25,14 +25,15 @@ public class ReleConnection {
         try {
             Client client = ClientBuilder.newClient();
             // In un oggetto WebTarget viene indicato il target della richiesta HTTP
-            WebTarget target = client.target("http://192.168.0.72:8084/webapi/GestioneLuce/");
-            //http://192.168.0.72:8084/webapi/GestioneLuce/
+            WebTarget target = client.target("http://localhost:8080/testwebapp/webapi/rele/001/status");
+
             //http://localhost:8080/testwebapp/webapi/rele/001/status
             // Viene effettuata la richiesta la quale ritorna un JSON, successivamente viene convertito nella class Rele
             rele = target.request(MediaType.APPLICATION_JSON).get(Rele.class);
             System.out.println("Rele tornato: " + rele.getMessage() + " " + rele.getId());
             System.out.println("Sono alla fine del try()");
         } catch (Exception error) {
+
             rele.setMessage(error.getMessage());
             rele.setStatus("ERROR");
             System.out.println("Eccezione : " + error);
@@ -45,17 +46,20 @@ public class ReleConnection {
     public Rele setReleStatus(Action action) {
 
         try {
-            Client client = ClientBuilder.newClient();
-            WebTarget target = client.target("http://192.168.0.72:8084/webapi/GestioneLuce/post");
+            System.out.println("SONO in SetReleConnection");
+           Client client = ClientBuilder.newClient();
+            WebTarget target = client.target("http://localhost:8080/testwebapp/webapi/rele");
             rele = target.request(MediaType.APPLICATION_JSON)
-                    .accept(MediaType.APPLICATION_JSON)
-                    .post(Entity.json(action), Rele.class);
-
+                        .accept(MediaType.APPLICATION_JSON)
+                        .post(Entity.json(action), Rele.class);
+           
         } catch (Exception error) {
-            rele.setMessage(error.getMessage());
-            System.out.println("Eccezione : " + error);
-        }
 
+            rele.setMessage(error.getMessage());
+            rele.setStatus("ERROR");
+            System.out.println("SONO in SetReleConnection ERROR: " + rele.getId() + " " + rele.getStatus());
+            return rele;
+        }
         return rele;
     }
 

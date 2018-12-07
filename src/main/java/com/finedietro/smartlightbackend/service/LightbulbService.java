@@ -21,7 +21,7 @@ public class LightbulbService {
     private static String STATUS_1 = "1";
     private static String STATUS_ERROR = "ERROR";
     private static String ACTION_ACCENDI = "ACCESO";
-    private static String STATUS_SPEGNI = "SPENTO";
+    private static String ACTION_SPEGNI = "SPENTO";
 
     public LightbulbService() {
         this.lightbulb = new Lightbulb();
@@ -47,26 +47,28 @@ public class LightbulbService {
     }
 
     public Lightbulb manageAction(Action action) {
-        
-         if (action.getAction().equalsIgnoreCase(ACTION_ACCENDI) || action.getAction().equalsIgnoreCase(STATUS_SPEGNI)) {
-
-            //System.out.println("manage action1");
-            lightbulb.setId(action.getId());
-            //System.out.println("manage action2");
-            rele = rs.setReleStatus(action);  // viene utilizzato il releservice per effettuare l'azione sul rele
-            System.out.println("manage action3"+ rele.getStatus());
-            lightbulb.setStatus(rele.getStatus());
+        lightbulb.setId(action.getId());
+        if (action.getAction().equalsIgnoreCase(ACTION_ACCENDI) || action.getAction().equalsIgnoreCase(ACTION_SPEGNI)) {
             
-            if (rele.getMessage().equalsIgnoreCase(STATUS_ON))
-            lightbulb.setMessage(rele.getMessage());
-            //System.out.println("manage action4");
-            
+            rs = new ReleService(action.getId());
+            rele = rs.setReleStatus(action);
         } else {
             lightbulb.setStatus(STATUS_ERROR);
-            lightbulb.setMessage("Azione non esistente");
+            lightbulb.setMessage("Azione non presente");
+            return lightbulb;
         }
+
+        if (rele.getStatus().equalsIgnoreCase(STATUS_1)) {
+            lightbulb.setStatus(STATUS_ON);
+        } else if (rele.getStatus().equalsIgnoreCase(STATUS_0)) {
+            lightbulb.setStatus(STATUS_OFF);
+        } else if(rele.getStatus().equalsIgnoreCase(STATUS_ERROR)){
+            lightbulb.setStatus(STATUS_ERROR);
+            lightbulb.setMessage(rele.getMessage());
+        }
+
         return lightbulb;
-        
+
     }
 
     public Lightbulb getLightbulbStatus(String id) {

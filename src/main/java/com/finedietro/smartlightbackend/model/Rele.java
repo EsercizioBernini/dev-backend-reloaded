@@ -8,7 +8,6 @@ public class Rele {
     private String id;
     private String status;
     private String message;
-    private String action;
 
     public Rele(String idBulb) {
         this.id = idBulb;
@@ -40,15 +39,5 @@ public class Rele {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
-    }
-    
-    
 
 }
