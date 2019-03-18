@@ -4,10 +4,7 @@ import com.finedietro.smartlightbackend.model.Action;
 import com.finedietro.smartlightbackend.model.Lightbulb;
 import com.finedietro.smartlightbackend.model.Rele;
 
-/**
- *
- * @author aless
- */
+
 public class LightbulbService {
 
     private Lightbulb lightbulb;
@@ -20,8 +17,8 @@ public class LightbulbService {
     private static String STATUS_0 = "0";
     private static String STATUS_1 = "1";
     private static String STATUS_ERROR = "ERROR";
-    private static String ACTION_ACCENDI = "ACCESO";
-    private static String ACTION_SPEGNI = "SPENTO";
+    private static String ACTION_ACCENDI = "ACCENDI";
+    private static String ACTION_SPEGNI = "SPEGNI";
 
     public LightbulbService() {
         this.lightbulb = new Lightbulb();
@@ -47,9 +44,10 @@ public class LightbulbService {
     }
 
     public Lightbulb manageAction(Action action) {
+        System.out.println("sono in manageAction");
         lightbulb.setId(action.getId());
-        if (action.getAction().equalsIgnoreCase(ACTION_ACCENDI) || action.getAction().equalsIgnoreCase(ACTION_SPEGNI)) {
-            
+                if (action.getAction().equalsIgnoreCase(ACTION_ACCENDI) || action.getAction().equalsIgnoreCase(ACTION_SPEGNI)) {
+            //System.out.println("sono in manageAction di LightBulb Service");
             rs = new ReleService(action.getId());
             rele = rs.setReleStatus(action);
         } else {
@@ -57,6 +55,9 @@ public class LightbulbService {
             lightbulb.setMessage("Azione non presente");
             return lightbulb;
         }
+        
+        
+        
 
         if (rele.getStatus().equalsIgnoreCase(STATUS_1)) {
             lightbulb.setStatus(STATUS_ON);
