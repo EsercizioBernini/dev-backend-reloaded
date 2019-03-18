@@ -42,6 +42,7 @@ public class ReleService {
 
     public Rele setReleStatus(Action action) {
         try {
+            System.out.println("sono in setReleStatus di ReleService");
             rele = rl.setReleStatus(action);
         } catch (Exception e) {
             rele.setStatus(STATUS_ERROR);
