@@ -25,7 +25,8 @@ public class ReleConnection {
         try {
             Client client = ClientBuilder.newClient();
             // In un oggetto WebTarget viene indicato il target della richiesta HTTP
-            WebTarget target = client.target("http://localhost:8080/testwebapp/webapi/rele/001/status");
+           // WebTarget target = client.target("http://localhost:8080/testwebapp/webapi/rele/001/status");
+            WebTarget target = client.target("http://localhost:8084/GestoreLuce1/webapi/GestioneLuce");
 
             //http://localhost:8080/testwebapp/webapi/rele/001/status
             // Viene effettuata la richiesta la quale ritorna un JSON, successivamente viene convertito nella class Rele
@@ -48,7 +49,8 @@ public class ReleConnection {
         try {
             System.out.println("SONO in SetReleConnection");
            Client client = ClientBuilder.newClient();
-            WebTarget target = client.target("http://localhost:8080/testwebapp/webapi/rele");
+            WebTarget target = client.target("http://localhost:8084/GestoreLuce1/webapi/GestioneLuce/post");
+           // WebTarget target = client.target("http://localhost:8080/testwebapp/webapi/rele");
             rele = target.request(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
                         .post(Entity.json(action), Rele.class);
